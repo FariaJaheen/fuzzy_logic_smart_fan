@@ -6,6 +6,9 @@ A closed-loop thermal controller is designed and evaluated in this project, in w
 - Demonstrating multi-sensor adaptation (temperature + ambient light) to realize context-aware, acoustically conservative cooling at night.
 - Practicing safe power interfacing (BJT/MOSFET driver and flyback diode) and reproducible telemetry for analysis.
 
+Explore, run, and modify this project directly in **Tinkercad Circuits**:
+👉 [Open the Smart Fan in Tinkercad](https://www.tinkercad.com/things/7coI43mhA0o-fuzzylogicsmartfan)  
+
 ---
 
 ## 2. Project Overview
