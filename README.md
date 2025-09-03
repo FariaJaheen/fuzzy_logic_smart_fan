@@ -2,9 +2,9 @@
 
 ## 1. Objectives
 A closed-loop thermal controller is designed and evaluated in this project, in which temperature measurements are converted into PWM fan speed using fuzzy logic. The aims are to:
-- Implement linguistic rule–based control (COOL/WARM/HOT; DARK/BRIGHT) with centroid defuzzification on a microcontroller.
-- Demonstrate multi-sensor adaptation (temperature + ambient light) to realize context-aware, acoustically conservative cooling at night.
-- Practice safe power interfacing (BJT/MOSFET driver and flyback diode) and reproducible telemetry for analysis.
+- Implementing linguistic rule–based control (COOL/WARM/HOT; DARK/BRIGHT) with centroid defuzzification on a microcontroller.
+- Demonstrating multi-sensor adaptation (temperature + ambient light) to realize context-aware, acoustically conservative cooling at night.
+- Practicing safe power interfacing (BJT/MOSFET driver and flyback diode) and reproducible telemetry for analysis.
 
 ---
 
