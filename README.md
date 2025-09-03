@@ -26,7 +26,7 @@ All parts are available in Tinkercad Circuits.
 - Breadboard, jumpers  
 - (Optional) LEDs for status: “Heat Alert” and “Quiet/Night Mode”
 
-**Pin Map (recommended)**
+**Pin Map**
 
 | Signal                 | Arduino Pin | Notes                                                                 |
 |------------------------|-------------|-----------------------------------------------------------------------|
@@ -44,23 +44,12 @@ All parts are available in Tinkercad Circuits.
 
 ---
 
-## 4. Implementation and Working Principle
-1. **Sensing.** The Arduino samples `A0` (temperature) and `A1` (light). TMP36 readings are converted to °C; LDR is normalized to [0,1].  
-2. **Fuzzification.** Memberships are computed via triangular/trapezoidal functions:
-   - Temperature: COOL, WARM, HOT  
-   - Light: DARK, BRIGHT
-3. **Inference (Mamdani).** Rules encode interpretable behavior, e.g.:  
-   - R1: IF COOL → LOW  
-   - R2: IF WARM AND BRIGHT → MID  
-   - R3: IF WARM AND DARK → LOW (quieter at night)  
-   - R4: IF HOT AND BRIGHT → HIGH  
-   - R5: IF HOT AND DARK → MID (cool, but limit noise)
-4. **Defuzzification.** Singleton outputs {LOW, MID, HIGH} map to PWM set-points (e.g., 60, 140, 230). A weighted average (centroid of singletons) yields the duty cycle.  
-5. **Actuation and Telemetry.** The PWM is written to D5. Optional LEDs indicate heat and quiet modes. A CSV stream supports Serial Plotter visualization and lab reporting.
+## 4.and Working Principle
+The implementation of the fuzzy-logic smart fan system integrates sensing, fuzzification, inference, defuzzification, and actuation into a unified control workflow. The Arduino Uno first performs sensing by sampling the analog signals from the TMP36 temperature sensor (A0) and the LDR-based voltage divider (A1). The TMP36 output is converted into degrees Celsius, while the LDR voltage is normalized to a [0,1] range to represent relative light intensity. In the fuzzification stage, these crisp sensor values are mapped into linguistic variables through triangular and trapezoidal membership functions, defining three sets for temperature—COOL, WARM, and HOT—and two sets for light intensity—DARK and BRIGHT. The inference mechanism, based on Mamdani reasoning, evaluates a set of interpretable rules that encode context-aware fan behavior. For example, when the temperature is COOL, the fan is set to a LOW speed (R1), whereas WARM conditions lead to a MID speed in bright environments (R2) but only a LOW speed under dark conditions (R3), prioritizing quieter operation at night. Similarly, HOT conditions drive the fan to a HIGH speed when accompanied by bright light (R4), but only to a MID speed when dark (R5), thereby balancing cooling demand with noise considerations. During defuzzification, the aggregated fuzzy outputs are converted into a crisp control signal by applying a centroid calculation over singleton PWM set-points (LOW = 60, MID = 140, HIGH = 230). This process yields a duty cycle value between 0 and 255. Finally, in the actuation and telemetry phase, the resulting PWM signal is written to pin D5 to drive the fan through a transistor or MOSFET, while optional LEDs provide quick feedback for heat-alert and quiet-night modes. In addition, the Arduino streams sensor values, membership degrees, and PWM outputs in CSV format, enabling visualization through the Serial Plotter and facilitating lab-based analysis and reporting.
 
 ---
 
-## 5. Tinkercad Setup (concise)
+## 5. Tinkercad Setup
 1. Place **Arduino Uno**, **TMP36**, **Photoresistor**, **10 kΩ resistor**, **NPN/MOSFET**, **diode**, **DC motor**.  
 2. Build the **LDR divider**: LDR to +5 V, 10 kΩ to GND, junction to A1.  
 3. Wire **TMP36**: +5 V, GND, Vout to A0.  
