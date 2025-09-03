@@ -1,4 +1,4 @@
-# Fuzzy-Logic Smart Fan: Temperature-Aware PWM Cooling (Arduino + Tinkercad)
+# Fuzzy-Logic Smart Fan: Temperature-Aware PWM Cooling 
 
 ## 1. Objectives
 A closed-loop thermal controller is designed and evaluated in this project, in which temperature measurements are converted into PWM fan speed using fuzzy logic. The aims are to:
