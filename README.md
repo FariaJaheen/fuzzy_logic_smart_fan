@@ -85,16 +85,8 @@ Students will be able to:
 
 ---
 
-## 9. Assessment Rubric (suggested)
-- Hardware correctness and safety (20%)  
-- Fuzzy design quality (memberships, rules, defuzzification) (30%)  
-- Empirical validation with plots and analysis (25%)  
-- Code structure and clarity (15%)  
-- Extensions (hysteresis/deadband, EEPROM settings, UI) (10%)
 
----
-
-## 10. Repository Structure
+## 9. Repository Structure
 02_fuzzy_fan_controller/
 ├─ README.md
 └─ fuzzy_fan_controller.ino
