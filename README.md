@@ -1,6 +1,6 @@
 # Fuzzy-Logic Smart Fan: Temperature-Aware PWM Cooling 
 
-## 1. Objectives
+## Objectives
 A closed-loop thermal controller is designed and evaluated in this project, in which temperature measurements are converted into PWM fan speed using fuzzy logic. The aims are to:
 - Implementing linguistic rule–based control (COOL/WARM/HOT; DARK/BRIGHT) with centroid defuzzification on a microcontroller.
 - Demonstrating multi-sensor adaptation (temperature + ambient light) to realize context-aware, acoustically conservative cooling at night.
@@ -11,12 +11,12 @@ Explore, run, and modify this project directly in **Tinkercad Circuits**:
 
 ---
 
-## 2. Project Overview
+## Project Overview
 An Arduino Uno reads a temperature sensor (TMP36) and an LDR-based light level. The system fuzzifies these inputs into linguistic memberships, evaluates a compact rule base to infer a fan speed class (LOW/MID/HIGH), and defuzzifies to a crisp PWM duty cycle (0–255). The fan is driven via a transistor or logic-level MOSFET with a flyback diode. Telemetry (temperature, light, memberships, PWM) is streamed to the Serial Plotter for validation and tuning. The entire build is reproducible in Tinkercad Circuits and transferable to physical hardware.
 
 ---
 
-## 3. Components
+## Components
 All parts are available in Tinkercad Circuits.
 
 - Arduino Uno R3  
@@ -47,12 +47,12 @@ All parts are available in Tinkercad Circuits.
 
 ---
 
-## 4. Working Principle
+## Working Principle
 The implementation of the fuzzy-logic smart fan system integrates sensing, fuzzification, inference, defuzzification, and actuation into a unified control workflow. The Arduino Uno first performs sensing by sampling the analog signals from the TMP36 temperature sensor (A0) and the LDR-based voltage divider (A1). The TMP36 output is converted into degrees Celsius, while the LDR voltage is normalized to a [0,1] range to represent relative light intensity. In the fuzzification stage, these crisp sensor values are mapped into linguistic variables through triangular and trapezoidal membership functions, defining three sets for temperature—COOL, WARM, and HOT—and two sets for light intensity—DARK and BRIGHT. The inference mechanism, based on Mamdani reasoning, evaluates a set of interpretable rules that encode context-aware fan behavior. For example, when the temperature is COOL, the fan is set to a LOW speed (R1), whereas WARM conditions lead to a MID speed in bright environments (R2) but only a LOW speed under dark conditions (R3), prioritizing quieter operation at night. Similarly, HOT conditions drive the fan to a HIGH speed when accompanied by bright light (R4), but only to a MID speed when dark (R5), thereby balancing cooling demand with noise considerations. During defuzzification, the aggregated fuzzy outputs are converted into a crisp control signal by applying a centroid calculation over singleton PWM set-points (LOW = 60, MID = 140, HIGH = 230). This process yields a duty cycle value between 0 and 255. Finally, in the actuation and telemetry phase, the resulting PWM signal is written to pin D5 to drive the fan through a transistor or MOSFET, while optional LEDs provide quick feedback for heat-alert and quiet-night modes. In addition, the Arduino streams sensor values, membership degrees, and PWM outputs in CSV format, enabling visualization through the Serial Plotter and facilitating lab-based analysis and reporting.
 
 ---
 
-## 5. Tinkercad Setup
+## Tinkercad Setup
 1. Place **Arduino Uno**, **TMP36**, **Photoresistor**, **10 kΩ resistor**, **NPN/MOSFET**, **diode**, **DC motor**.  
 2. Build the **LDR divider**: LDR to +5 V, 10 kΩ to GND, junction to A1.  
 3. Wire **TMP36**: +5 V, GND, Vout to A0.  
@@ -61,14 +61,14 @@ The implementation of the fuzzy-logic smart fan system integrates sensing, fuzzi
 
 ---
 
-## 6. Applications
+## Applications
 - Context-aware cooling for embedded systems and equipment enclosures.  
 - 3D printer or workstation airflow that attenuates acoustics in low light.  
 - Industrial cabinets where interpretable control is preferred to PID.
 
 ---
 
-## 7. Learning Outcomes
+## Learning Outcomes
 Students will be able to:
 - Implement Mamdani fuzzy inference (fuzzify → rule evaluation → aggregation → centroid).  
 - Engineer and justify membership functions and rule bases.  
@@ -77,7 +77,7 @@ Students will be able to:
 
 ---
 
-## 8. Validation Plan
+## Validation Plan
 - **Static plateaus:** hold ~20 °C, ~26 °C, ~34 °C; record steady PWM and memberships.  
 - **Day/Night test:** vary LDR; show reduced PWM under DARK at equal temperature.  
 - **Thermal step:** warm the sensor gently; quantify rise time and overshoot.  
@@ -86,7 +86,7 @@ Students will be able to:
 ---
 
 
-## 9. Repository Structure
+## Repository Structure
 fuzzy_logic_smart_fan/
 ├─ README.md
 └─ fuzzy_fan_controller.ino
