@@ -87,6 +87,6 @@ Students will be able to:
 
 
 ## 9. Repository Structure
-02_fuzzy_fan_controller/
+fuzzy_logic_smart_fan/
 ├─ README.md
 └─ fuzzy_fan_controller.ino
