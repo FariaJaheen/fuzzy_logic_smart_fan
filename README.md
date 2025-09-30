@@ -37,7 +37,7 @@ All parts are available in Tinkercad Circuits.
 | TMP36 analog output    | A0          | TMP36: 0.5 V at 0 °C; 10 mV / °C                                     |
 | LDR divider output     | A1          | LDR to +5 V, 10 kΩ to GND, junction to A1                             |
 | Heat Alert LED (opt.)  | D12         | Lights when HOT membership is high                                    |
-| Warm Mode LED (opt.)  | D10         | Lights when DARK membership is high                                   |
+| Warm Mode LED (opt.)  | D10         | Lights when WARM membership is dominant                                 |
 | Quiet Mode LED (opt.)  | D11         | Lights when DARK membership is high                                   |
 
 **Wiring notes (hardware)**
